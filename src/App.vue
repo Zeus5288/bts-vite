@@ -1,22 +1,53 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld />
+  <div id="app">
+    <div class="g-phoneX-terminator"></div>
+    <div class="g-phoneX-fixed-terminator"></div>
+
+    <router-view></router-view>
+  </div>
+  
 </template>
 
 <script setup lang="ts">
-import HelloWorld from '@/components/HelloWorld.vue'
 
-// This starter template is using Vue 3 experimental <script setup> SFCs
-// Check out https://github.com/vuejs/rfcs/blob/script-setup-2/active-rfcs/0000-script-setup.md
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss" >
+html {
+  body {
+    height: 99%;
+    background: #f5f5f5;
+    #app {
+      height: 100%;
+      .g-phoneX-terminator {
+        width: 100vw;
+        height: 3rem;
+        position: absolute;
+        top: -3rem;
+        background: #1677FF;
+        z-index: 9999;
+      }
+      .g-phoneX-fixed-terminator {
+        width: 100vw;
+        height: 3rem;
+        position: fixed;
+        top: -3rem;
+        background: #1677FF;
+        z-index: 9999;
+      }
+    }
+  }
+}
+.van-field__label {
+  flex: 1 0 30px ;
+}
+.loading {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  position: fixed;
+  padding-top: 8.333333rem;
+  z-index: 999999999;
 }
 </style>
