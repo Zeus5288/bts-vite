@@ -41,16 +41,17 @@
 
         <div class="m-list">
             <van-row class="m-list-item" v-for="(item, index) in state.list" :key="index">
-                <!-- <flightCard :item="item" @handlePlaceOrder="handlePlaceOrder"/> -->
+                <flightCard :item="item" @handlePlaceOrder="handlePlaceOrder"/>
             </van-row>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { reactive, onMounted } from 'vue'
+import TicketCard from "@/components/TicketCard.vue"
+import flightCard from "./components/flightCard.vue"
 
-import TicketCard from "@/components/TicketCard/TicketCard"
+import { reactive, onMounted } from 'vue'
 
 import {useRoute, useRouter} from "vue-router";
 const route = useRoute()

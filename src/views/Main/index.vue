@@ -10,7 +10,7 @@
 </template>
   
 <script setup lang="ts">
-import FooterBar from "@/components/Layout/FooterBar.vue";
+import FooterBar from "@/components/FooterBar.vue";
 
 </script>
 
