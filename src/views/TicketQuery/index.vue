@@ -33,7 +33,11 @@
               <span class="m-date-week">周五</span>
             </div>
           </div>
-          <div class="m-date-item" v-show="state.arriveAndDepart == 2" @click="state.departCalendar = true">
+          <div
+            class="m-date-item"
+            v-show="state.arriveAndDepart == 2"
+            @click="state.departCalendar = true"
+          >
             <p>返回日</p>
             <div>
               <span class="m-date-time">{{ state.departDateText }}</span>
@@ -86,6 +90,9 @@
 <script setup lang="ts">
 import { reactive, onMounted } from 'vue'
 
+import { useRouter } from "vue-router";
+const router = useRouter()
+
 import iconToggle from '@/assets/img/icon-toggle.png'
 
 let state = reactive({
@@ -98,8 +105,8 @@ let state = reactive({
   classTypeText: '经济舱',
   classShow: false,
   classList: [
-      {text: '经济舱', value: '1'},
-      {text: '商务舱', value: '2'},
+    { text: '经济舱', value: '1' },
+    { text: '商务舱', value: '2' },
   ],
   arriveCalendar: false,
   departCalendar: false,
@@ -109,74 +116,82 @@ let state = reactive({
   departDateText: '',
 })
 
-onMounted(()=>{
+onMounted(() => {
   initPage()
 })
 
-let initPage = ()  => {
-    [state.arriveDate, state.arriveDateText] = setDateTime(new Date());
-    [state.departDate, state.departDateText] = setDateTime(new Date());
+const initPage = () => {
+  [state.arriveDate, state.arriveDateText] = setDateTime(new Date());
+  [state.departDate, state.departDateText] = setDateTime(new Date());
 }
 
-let handleQuery = () => {
-    router.push({
-        path: `/ticket-list?arriveAndDepart=${state.arriveAndDepart}`
-        +`&arriveArea=${state.arriveArea}&arriveAreaText=${state.arriveAreaText}`
-        +`&departArea=${state.departArea}&departAreaText=${state.departAreaText}`
-        +`&classType=${state.classType}&arriveDate=${state.arriveDate}&departDate=${state.departDate}`
-    });
+const handleQuery = () => {
+  router.push({
+    name: 'TicketList',
+    query: {
+      arriveAndDepart: state.arriveAndDepart,
+      arriveArea: state.arriveArea,
+      arriveAreaText: state.arriveAreaText,
+      departArea: state.departArea,
+      departAreaText: state.departAreaText,
+      classType: state.classType,
+      classTypeText: state.classTypeText,
+      arriveDate: state.arriveDate,
+      departDate: state.departDate,
+    }
+  })
 }
 
 // 切换城市
-let toggleArea = () => {
-    [state.arriveArea, state.arriveAreaText, state.departArea, state.departAreaText]
-        =
-        [state.departArea, state.departAreaText, state.arriveArea, state.arriveAreaText]
+const toggleArea = () => {
+  [state.arriveArea, state.arriveAreaText, state.departArea, state.departAreaText]
+    =
+    [state.departArea, state.departAreaText, state.arriveArea, state.arriveAreaText]
 }
 
 // 城市选择确定
-let areaPickConfirm = (selected, index) => {
-    state.classTypeText = selected.text
-    state.classType = selected.value
-    state.classShow = false
+const areaPickConfirm = (selected, index) => {
+  state.classTypeText = selected.text
+  state.classType = selected.value
+  state.classShow = false
 }
 // 城市选择取消
-let areaTimePickCancel = () => {
-    state.classShow = false
+const areaTimePickCancel = () => {
+  state.classShow = false
 }
 
 // 出发日选择确定
-let arriveDatePickConfirm = (day) => {
-    [state.arriveDate, state.arriveDateText] = setDateTime(day)
-    state.arriveCalendar = false
+const arriveDatePickConfirm = (day) => {
+  [state.arriveDate, state.arriveDateText] = setDateTime(day)
+  state.arriveCalendar = false
 }
 
 // 出发日选择取消
-let arriveDatePickCancel = () => {
-    state.arriveCalendar = false
+const arriveDatePickCancel = () => {
+  state.arriveCalendar = false
 }
 
 // 返回日选择确定
-let departDatePickConfirm = (day) => {
-    state.departCalendar = false
+const departDatePickConfirm = (day) => {
+  state.departCalendar = false
 }
 
 // 返回日选择取消
-let departDatePickCancel = () => {
-    state.departCalendar = false
+const departDatePickCancel = () => {
+  state.departCalendar = false
 }
 
-let setDateTime = (dataTime) => {
-    let year = dataTime.getFullYear();
-    let month = dataTime.getMonth() + 1;
-    let day = dataTime.getDate();
-    if (month >= 1 && month <= 9) {
-        month = `0${month}`;
-    }
-    if (day >= 1 && day <= 9) {
-        day = `0${day}`;
-    }
-    return [`${year}-${month}-${day}`, `${month}月${day}日`]
+const setDateTime = (dataTime) => {
+  let year = dataTime.getFullYear();
+  let month = dataTime.getMonth() + 1;
+  let day = dataTime.getDate();
+  if (month >= 1 && month <= 9) {
+    month = `0${month}`;
+  }
+  if (day >= 1 && day <= 9) {
+    day = `0${day}`;
+  }
+  return [`${year}-${month}-${day}`, `${month}月${day}日`]
 }
 
 </script>

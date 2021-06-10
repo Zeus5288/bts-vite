@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 
 import AppLayout from '@/views/Main/index.vue'
 
@@ -29,10 +29,19 @@ const routes = [
                 component: () => import('@/views/TicketQuery/index.vue')
             },
         ]
-    }
+    },
+    {
+        path: '/ticket-list',
+        name: 'TicketList',
+        meta: {
+            title: '机票查询',
+            isOpen: true
+        },
+        component: () => import('@/views/TicketList/index.vue')
+    },
 ]
 
 export default createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     routes
 })
