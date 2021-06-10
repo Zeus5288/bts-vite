@@ -39,6 +39,15 @@ const routes = [
         },
         component: () => import('@/views/TicketList/index.vue')
     },
+    {
+        path: '/ticket-detail',
+        name: 'TicketDetail',
+        meta: {
+            title: '机票查询',
+            isOpen: true
+        },
+        component: () => import('@/views/TicketDetail/index.vue')
+    },
 ]
 
 export default createRouter({

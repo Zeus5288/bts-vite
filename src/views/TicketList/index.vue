@@ -14,7 +14,7 @@
             <weekSelect @arriveCalendarShow="arriveCalendarShow" />
         </div>
 
-        <flightList @handleTicketDetail="handleTicketDetail"/>
+        <flightList @handleTicketDetail="handleTicketDetail" />
 
         <div class="m-ticket-filter-wrapper">
             <van-row class="m-ticket-filter">
@@ -32,23 +32,21 @@
             </van-row>
         </div>
 
-        <van-calendar
-            color="#1677FF"
-            v-model="state.arriveCalendar"
-            @confirm="arriveDatePickConfirm"
-            @cancel="arriveDatePickCancel"
-        />
+        <van-calendar color="#1677FF" :show="arriveCalendar" @confirm="arriveDatePickConfirm" />
     </div>
 </template>
 
 <script setup lang="ts">
-import { reactive, onMounted } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 
 import weekSelect from "./components/weekSelect.vue";
 import flightList from "./components/flightList.vue";
 
-import {useRoute} from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 const route = useRoute()
+const router = useRouter()
+
+const arriveCalendar = ref(false)
 
 let state = reactive({
     arriveArea: '',
@@ -60,8 +58,7 @@ let state = reactive({
     arriveDate: '',
     arriveDateText: '',
     sortTime: 0,
-    sortPrice: 0,
-    arriveCalendar: false
+    sortPrice: 0
 })
 
 onMounted(() => {
@@ -79,16 +76,16 @@ const initPage = () => {
     state.arriveDateText = route.query.arriveDateText
 }
 const arriveCalendarShow = () => {
-    state.arriveCalendar = true
+    arriveCalendar.value = true
 }
 // 出发日选择确定
 const arriveDatePickConfirm = (day) => {
     [state.arriveDate, state.arriveDateText] = setDateTime(day)
-    state.arriveCalendar = false
+    arriveCalendar.value = false
 }
 // 出发日选择取消
 const arriveDatePickCancel = () => {
-    state.arriveCalendar = false
+    arriveCalendar.value = false
 }
 const setDateTime = (dataTime) => {
     let year = dataTime.getFullYear();
@@ -105,13 +102,21 @@ const setDateTime = (dataTime) => {
 const getWeekDays = () => {
 
 }
-const handleTicketDetail = () => {
-    state.$router.push({
-        path: `/ticket-detail?arriveAndDepart=${state.arriveAndDepart}`
-            + `&arriveArea=${state.arriveArea}&arriveAreaText=${state.arriveAreaText}`
-            + `&departArea=${state.departArea}&departAreaText=${state.departAreaText}`
-            + `&classType=${state.classType}&arriveDate=${state.arriveDate}&departDate=${state.departDate}`
-    });
+const handleTicketDetail = (item) => {
+    router.push({
+        name: 'TicketDetail',
+        query: {
+            arriveAndDepart: state.arriveAndDepart,
+            arriveArea: state.arriveArea,
+            arriveAreaText: state.arriveAreaText,
+            departArea: state.departArea,
+            departAreaText: state.departAreaText,
+            classType: state.classType,
+            classTypeText: state.classTypeText,
+            arriveDate: state.arriveDate,
+            departDate: state.departDate,
+        }
+    })
 }
 
 

@@ -45,9 +45,11 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, reactive } from "vue";
+import { defineProps, defineEmit, reactive } from "vue";
 
 // import flightCard from "./flightCard";
+
+const emit = defineEmit(['handleTicketDetail'])
 
 let state = reactive({
     pullLoading: false,
@@ -92,7 +94,7 @@ const onRefresh = () => {
     // })
 }
 const handleToDetails = (item) => {
-    // emit('handleTicketDetail', item)
+    emit('handleTicketDetail', item)
 }
 const query = () => {
     const data = { isAchievement: 0 }

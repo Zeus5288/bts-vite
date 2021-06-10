@@ -5,8 +5,11 @@ import {
     Tabbar, 
     TabbarItem, 
     Row, 
-    Col, Icon, 
+    Col, 
+    Icon, 
     Button, 
+    Tabs,
+    Tab,
     Overlay, 
     Picker, 
     Calendar, 
@@ -33,6 +36,8 @@ app.use(NavBar)
 .use(Col)
 .use(Icon)
 .use(Button)
+.use(Tabs)
+.use(Tab)
 .use(Overlay)
 .use(Picker)
 .use(Calendar)

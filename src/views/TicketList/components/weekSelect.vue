@@ -19,11 +19,11 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, reactive, onMounted } from 'vue'
+import { defineProps, defineEmit, reactive, onMounted } from 'vue'
 
 import iconCalendar from "@/assets/img/icon-calendar.png";
 
-emits: ['arriveCalendarShow']
+const emit = defineEmit(['arriveCalendarShow'])
 
 let state = reactive({
     selectIndex: 1,
