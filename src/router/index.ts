@@ -28,6 +28,33 @@ const routes = [
                 },
                 component: () => import('@/views/TicketQuery/index.vue')
             },
+            {
+                path: 'trips',
+                name: 'Trips',
+                meta: {
+                    title: '我的行程',
+                    isOpen: true
+                },
+                component: () => import('@/views/Trips/index.vue')
+            },
+            // {
+            //     path: 'orders',
+            //     name: 'Orders',
+            //     meta: {
+            //         title: '我的订单',
+            //         isOpen: true
+            //     },
+            //     component: () => import('@/views/Orders/index.vue')
+            // },
+            // {
+            //     path: 'personCenter',
+            //     name: 'PersonCenter',
+            //     meta: {
+            //         title: '个人中心',
+            //         isOpen: true
+            //     },
+            //     component: () => import('@/views/PersonCenter/index.vue')
+            // },
         ]
     },
     {
@@ -47,6 +74,15 @@ const routes = [
             isOpen: true
         },
         component: () => import('@/views/TicketDetail/index.vue')
+    },
+    {
+        path: '/trip-detail',
+        name: 'TripDetail',
+        meta: {
+            title: '行程详情',
+            isOpen: true
+        },
+        component: () => import('@/views/TripDetail/index.vue')
     },
 ]
 

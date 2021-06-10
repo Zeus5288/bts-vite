@@ -15,29 +15,7 @@
                     :key="index"
                     @click="handleToDetails(item)"
                 >
-                    <!-- <flightCard /> -->
-
-                    <div class="m-ticket">
-                        <div class="m-ticket-info">
-                            <div class="m-time-place">
-                                <div class="m-time-place-item">
-                                    <h3>20:00</h3>
-                                    <h4>首都机场</h4>
-                                </div>
-                                <div class="m-arrow">-</div>
-                                <div class="m-time-place-item">
-                                    <h3>20:00</h3>
-                                    <h4>首都机场</h4>
-                                </div>
-                            </div>
-                            <p class="m-air-info">东航MU8731 波音737（中）</p>
-                        </div>
-                        <div class="m-ticket-price">
-                            <p>￥1900</p>
-                            <div>携程</div>
-                        </div>
-                    </div>
-                    <!-- <flightCard /> -->
+                    <flightCard />
                 </van-row>
             </div>
         </van-list>
@@ -45,9 +23,8 @@
 </template>
 
 <script setup lang="ts">
+import flightCard from "./flightCard.vue";
 import { defineProps, defineEmit, reactive } from "vue";
-
-// import flightCard from "./flightCard";
 
 const emit = defineEmit(['handleTicketDetail'])
 

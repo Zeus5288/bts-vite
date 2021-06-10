@@ -1,6 +1,6 @@
 <template>
   <div class="mainview">
-    <van-nav-bar :safe-area-inset-top="true" fixed title="商旅平台" left-arrow />
+    <van-nav-bar :safe-area-inset-top="true" fixed title="商旅平台" />
 
     <router-view class="routerview"></router-view>
 
