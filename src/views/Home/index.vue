@@ -1,10 +1,7 @@
 <template>
   <div class="app_background g-wrapper">
     <div class="m-home-banner">
-      <img
-        src="http://img.www.ejianlong.com/bts-api/assets/home-banner.png"
-        alt
-      />
+      <img src="http://img.www.ejianlong.com/bts-api/assets/home-banner.png" alt />
     </div>
 
     <h3 class="g-mtitle">日常业务</h3>
@@ -21,19 +18,20 @@
         <p>{{ item.title }}</p>
       </van-col>
     </van-row>
-
   </div>
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
+import { getTestList } from "@/http/api.ts";
+import { useRouter } from "vue-router";
+const router = useRouter()
+
 import img0 from "@/assets/img/home-menu_0.png";
 import img1 from "@/assets/img/home-menu_1.png";
 import img2 from "@/assets/img/home-menu_2.png";
 import img3 from "@/assets/img/home-menu_3.png";
 import img4 from "@/assets/img/home-menu_4.png";
-
-import {useRouter} from "vue-router";
-const router = useRouter()
 
 const menuList = [
   { title: '机票', icon: img0, path: '/ticket-query' },
@@ -42,6 +40,23 @@ const menuList = [
   { title: '行程', icon: img3, path: '' },
   { title: '审批', icon: img4, path: '' },
 ]
+
+onMounted(() => {
+  initPage()
+});
+
+const initPage = () => {
+  const data = {
+    type: 41
+  }
+  const params = {
+    pageNum: 1,
+    pageSize: 10
+  }
+  getTestList(data, params).then(res => {
+
+  })
+}
 
 let toMenu = (item) => {
   router.push({

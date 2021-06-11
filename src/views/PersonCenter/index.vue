@@ -103,13 +103,13 @@ const handleLogOut = () => {
 }
 
 .m-my-menu {
-    .van-cell {
+    :deep(.van-cell) {
         margin-top: 10px;
         padding: 20px 30px;
         height: 120px;
         display: flex;
         align-items: center;
-        &__title {
+        .van-cell__title {
             margin-left: 20px;
             font-size: 34px;
             color: #333333;

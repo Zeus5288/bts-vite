@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import router from '@/router'
+import { axiosPlugin } from './plugins/axios';
 import { 
     NavBar, 
     Tabbar, 
@@ -15,7 +16,8 @@ import {
     Picker, 
     Calendar, 
     List, 
-    PullRefresh 
+    PullRefresh,
+    Toast
 } from 'vant';
 
 import App from './App.vue'
@@ -30,6 +32,7 @@ import '@/assets/css/common.scss'
 import 'amfe-flexible/index.js'
 
 const app = createApp(App);
+
 app.use(NavBar)
 .use(Tabbar)
 .use(TabbarItem)
@@ -44,6 +47,9 @@ app.use(NavBar)
 .use(Picker)
 .use(Calendar)
 .use(List)
-.use(PullRefresh);
+.use(PullRefresh)
+.use(Toast);
+
 app.use(router);
+app.use(axiosPlugin);
 app.mount('#app');
