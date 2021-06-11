@@ -37,15 +37,15 @@ const routes = [
                 },
                 component: () => import('@/views/Trips/index.vue')
             },
-            // {
-            //     path: 'orders',
-            //     name: 'Orders',
-            //     meta: {
-            //         title: '我的订单',
-            //         isOpen: true
-            //     },
-            //     component: () => import('@/views/Orders/index.vue')
-            // },
+            {
+                path: 'orders',
+                name: 'Orders',
+                meta: {
+                    title: '我的订单',
+                    isOpen: true
+                },
+                component: () => import('@/views/Orders/index.vue')
+            },
             // {
             //     path: 'personCenter',
             //     name: 'PersonCenter',
