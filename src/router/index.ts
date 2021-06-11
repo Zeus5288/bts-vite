@@ -46,15 +46,15 @@ const routes = [
                 },
                 component: () => import('@/views/Orders/index.vue')
             },
-            // {
-            //     path: 'personCenter',
-            //     name: 'PersonCenter',
-            //     meta: {
-            //         title: '个人中心',
-            //         isOpen: true
-            //     },
-            //     component: () => import('@/views/PersonCenter/index.vue')
-            // },
+            {
+                path: 'personCenter',
+                name: 'PersonCenter',
+                meta: {
+                    title: '个人中心',
+                    isOpen: true
+                },
+                component: () => import('@/views/PersonCenter/index.vue')
+            },
         ]
     },
     {

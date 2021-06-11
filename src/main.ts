@@ -4,6 +4,7 @@ import {
     NavBar, 
     Tabbar, 
     TabbarItem, 
+    Cell,
     Row, 
     Col, 
     Icon, 
@@ -32,6 +33,7 @@ const app = createApp(App);
 app.use(NavBar)
 .use(Tabbar)
 .use(TabbarItem)
+.use(Cell)
 .use(Row)
 .use(Col)
 .use(Icon)
