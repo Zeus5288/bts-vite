@@ -13,24 +13,24 @@
         <van-form ref="formData" @submit="onSubmit">
             <van-field
                 v-model="contact.passengername"
-                name="姓名"
+                name="passengername"
                 label="姓名"
                 placeholder="与乘机证件一致"
                 :rules="[{ required: true, message: '请填写姓名' }]"
             />
             <van-field
-                :value="state.licensetypeShow"
+                v-model="state.licensetypeShow"
                 readonly
                 clickable
-                name="证件类型"
+                name="licensetype"
                 label="证件类型"
                 placeholder="请选择"
-                @click="state.showPicker = true"
+                @click="typeSelectShow"
                 :rules="[{ required: true, message: '请选择证件类型' }]"
             />
             <van-field
                 v-model="contact.licenseno"
-                name="证件号码"
+                name="licenseno"
                 label="证件号码"
                 placeholder="请输入证件号"
                 :rules="[{ required: true, message: '请填写证件号码' }]"
@@ -38,7 +38,7 @@
             <van-field v-model="contact.phone" name="手机号码" label="手机号码" placeholder="请输入手机号" />
             <van-field
                 v-model="contact.empno"
-                name="工号"
+                name="empno"
                 label="工号"
                 placeholder="请输入工号"
                 :rules="[{ required: true, message: '请填写工号' }]"
@@ -46,7 +46,7 @@
         </van-form>
 
         <!--        证件类型选择-->
-        <van-popup v-model="state.showPicker" position="bottom">
+        <van-popup :show="state.showPicker" position="bottom">
             <van-picker
                 show-toolbar
                 :columns="columns"
@@ -58,7 +58,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, onMounted } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 import { useRoute, useRouter } from "vue-router";
 const route = useRoute()
 const router = useRouter()
@@ -91,6 +91,9 @@ let contact: DContact = reactive({
     empno: ''
 })
 
+// form表单ref
+const formData = ref()
+
 const columns = [
     { text: '身份证', key: '1' },
     { text: '港澳台居民证', key: '2' }
@@ -99,15 +102,23 @@ const columns = [
 const initPage = () => {
     route.query.id && (state.id = route.query.id)
 }
+
+const typeSelectShow = () => {
+    state.showPicker = true
+}
+
 // 选择证件类型
 const onConfirm = (value) => {
     state.licensetypeShow = value.text
-    state.contact.licensetype = value.key
+    contact.licensetype = value.key
     state.showPicker = false
 }
+
 const send = () => {
-    // this.$refs.formData.submit();
+    formData.value.submit();
 }
+
+// 提交表单校验成功后执行
 const onSubmit = (values) => {
     console.log(values);
 }
@@ -116,7 +127,7 @@ const onSubmit = (values) => {
 
 
 <style lang="scss" scoped>
-::v-deep .van-form {
+:deep(.van-form) {
     margin-top: 20px;
 }
 </style>
