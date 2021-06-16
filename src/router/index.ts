@@ -93,6 +93,24 @@ const routes = [
         },
         component: () => import('@/views/PlaceOrder/index.vue')
     },
+    {
+        path: '/contact',
+        name: 'Contact',
+        meta: {
+            title: '联系人',
+            isOpen: true
+        },
+        component: () => import('@/views/Contact/index.vue')
+    },
+    {
+        path: '/contactEdit',
+        name: 'ContactEdit',
+        meta: {
+            title: '联系人',
+            isOpen: true
+        },
+        component: () => import('@/views/ContactEdit/index.vue')
+    },
 ]
 
 export default createRouter({

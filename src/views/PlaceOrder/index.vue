@@ -5,7 +5,7 @@
             fixed
             :title="state.arriveAreaText + '-' + state.departAreaText"
             left-arrow
-            @click-left="$router.back()"
+            @click-left="router.back()"
         ></van-nav-bar>
 
         <div class="g-background-blue"></div>
@@ -135,9 +135,7 @@
 import contactList from "@/components/ContactList.vue"
 import ticketCard from "@/components/TicketCard.vue"
 
-
 import { reactive, computed, onMounted } from 'vue'
-
 import { useRoute, useRouter } from "vue-router";
 const route = useRoute()
 const router = useRouter()

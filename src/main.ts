@@ -18,7 +18,10 @@ import {
     Calendar, 
     List, 
     PullRefresh,
-    Toast
+    Toast,
+    Popup,
+    Form,
+    Field
 } from 'vant';
 
 import App from './App.vue'
@@ -50,7 +53,10 @@ app.use(NavBar)
 .use(Calendar)
 .use(List)
 .use(PullRefresh)
-.use(Toast);
+.use(Toast)
+.use(Popup)
+.use(Form)
+.use(Field);
 
 app.use(router);
 app.use(axiosPlugin);

@@ -15,7 +15,7 @@
                 :name="iconEdit"
                 color="#1677FF"
                 size="20"
-                @click="handleToEditContact"
+                @click="handleToEditContact(item)"
             />
         </div>
     </div>
@@ -50,11 +50,11 @@ const handleCheck = (item) => {
     item.checked = !item.checked
 }
 
-const handleToEditContact = () => {
+const handleToEditContact = (item) => {
     router.push({
         name: 'ContactEdit',
         query: {
-            isEdit: 1
+            id: item.id
         }
     })
 }
