@@ -31,7 +31,7 @@
         <div class="m-passengers-info m-wrapper">
             <h3>{{ passengersListSelect.length == 0 ? '选择乘机人' : `已选：${passengersListSelect.length}人` }}</h3>
             <div class="m-passengers-list">
-                <!-- <contact-list v-model="passengersList" /> -->
+                <contact-list v-model="state.passengersList" />
             </div>
             <van-button
                 class="m-passengers-button"
@@ -94,8 +94,8 @@
         <!--        航班详情-->
         <van-overlay :show="state.showTicketDetail">
             <div class="m-overlay-ticket">
-                <ticketCard />
-                <ticketCard />
+                <ticket-card />
+                <ticket-card />
                 <div class="u-detail-icon" @click="state.showTicketDetail = false">
                     收起&nbsp;&nbsp;
                     <van-icon name="arrow-up" />
@@ -132,8 +132,9 @@
 </template>
 
 <script setup lang="ts">
+import contactList from "@/components/ContactList.vue"
 import ticketCard from "@/components/TicketCard.vue"
-// import contactList from "@/components/ContactList.vue"
+
 
 import { reactive, computed, onMounted } from 'vue'
 
