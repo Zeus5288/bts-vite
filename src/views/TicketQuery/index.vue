@@ -64,7 +64,7 @@
         <van-picker
           title="请选择"
           show-toolbar
-          :columns="state.classList"
+          :columns="classList"
           @confirm="areaPickConfirm"
           @cancel="areaTimePickCancel"
         />
@@ -95,6 +95,23 @@ const router = useRouter()
 
 import iconToggle from '@/assets/img/icon-toggle.png'
 
+type DState = {
+  arriveAndDepart: number,
+  arriveArea: string,
+  arriveAreaText: string,
+  departArea: string,
+  departAreaText: string,
+  classType: string,
+  classTypeText: string,
+  classShow: boolean,
+  arriveCalendar: boolean,
+  departCalendar: boolean,
+  arriveDate: string,
+  arriveDateText: string,
+  departDate: string,
+  departDateText: string,
+}
+
 let state = reactive({
   arriveAndDepart: 1, // 1:单程,2:往返
   arriveArea: '',
@@ -104,10 +121,6 @@ let state = reactive({
   classType: '1',
   classTypeText: '经济舱',
   classShow: false,
-  classList: [
-    { text: '经济舱', value: '1' },
-    { text: '商务舱', value: '2' },
-  ],
   arriveCalendar: false,
   departCalendar: false,
   arriveDate: '',
@@ -115,6 +128,11 @@ let state = reactive({
   departDate: '',
   departDateText: '',
 })
+
+const classList: any[] = [
+  { text: '经济舱', value: '1' },
+  { text: '商务舱', value: '2' },
+]
 
 onMounted(() => {
   initPage()

@@ -57,7 +57,19 @@ import {useRoute, useRouter} from "vue-router";
 const route = useRoute()
 const router = useRouter()
 
-let state = reactive({
+type DState = {
+    arriveArea: string,
+    arriveAreaText: string,
+    departArea: string,
+    departAreaText: string,
+    classType: string,
+    classTypeText: string,
+    arriveDate: string,
+    arriveDateText: string,
+    list: any[]
+}
+
+let state:DState = reactive({
     arriveArea: '',
     arriveAreaText: '',
     departArea: '',

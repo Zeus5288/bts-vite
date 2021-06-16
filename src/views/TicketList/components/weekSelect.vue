@@ -25,7 +25,12 @@ import iconCalendar from "@/assets/img/icon-calendar.png";
 
 const emit = defineEmit(['arriveCalendarShow'])
 
-let state = reactive({
+type DState = {
+    selectIndex: number,
+    dateList: any[]
+}
+
+let state: DState = reactive({
     selectIndex: 1,
     dateList: [
         { day: '05-26', week: '周五' },

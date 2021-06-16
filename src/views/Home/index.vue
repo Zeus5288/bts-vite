@@ -38,7 +38,7 @@ const menuList = [
   { title: '酒店', icon: img1, path: '' },
   { title: '订单', icon: img2, path: '' },
   { title: '行程', icon: img3, path: '' },
-  { title: '审批', icon: img4, path: '' },
+  { title: '审批', icon: img4, path: '' }
 ]
 
 onMounted(() => {

@@ -46,10 +46,15 @@ import iconMenu2 from "@/assets/img/icon-my-menu2.png";
 import iconMenu3 from "@/assets/img/icon-my-menu3.png";
 import iconMenu4 from "@/assets/img/icon-my-menu4.png";
 
+type DState = {
+    avatar: string,
+    empno: string,
+    userName: string,
+}
 let state = reactive({
     avatar: "",
     empno: "",
-    userName: "180087",
+    userName: "Jack",
 });
 
 const initPage = () => {

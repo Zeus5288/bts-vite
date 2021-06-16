@@ -28,24 +28,36 @@ import { defineProps, defineEmit, reactive } from "vue";
 
 const emit = defineEmit(['handleTicketDetail'])
 
-let state = reactive({
+
+type DState = {
+    pullLoading: boolean,
+    listLoading: boolean,
+    listFinished: boolean,
+    list: any[]
+}
+
+let state:DState = reactive({
     pullLoading: false,
     listLoading: false,
     listFinished: false,
-    list: [],
-    pageParams: {
-        pageNum: 1,
-        pageSize: 10
-    }
+    list: []
 })
+
+type DPage = {
+  pageNum: number,
+  pageSize: number
+}
+
+const pageParams: DPage = {
+  pageNum: 1,
+  pageSize: 10
+}
 
 const onRefresh = () => {
     state.list = []
     state.listFinished = false
-    state.pageParams.pageNum = 1
+    pageParams.pageNum = 1
     state.listLoading = true
-
-    const data = { isAchievement: 0 }
 
     setTimeout(() => {
         state.list = [{ name: '携程' }, { name: '携程' }, { name: '携程' }, { name: '携程' }, { name: '携程' }, { name: '携程' }]
@@ -58,23 +70,11 @@ const onRefresh = () => {
         state.listLoading = false
 
     }, 500)
-    // projectList(data, state.pageParams).then(res => {
-    //     if (res.code == '200') {
-    //         state.pageParams.pageNum += 1
-    //         state.list = res.data.rows
-    //         if (state.list.length >= res.data.total) {
-    //             state.listFinished = true
-    //         }
-    //     }
-    //     state.pullLoading = false
-    //     state.listLoading = false
-    // })
 }
 const handleToDetails = (item) => {
     emit('handleTicketDetail', item)
 }
 const query = () => {
-    const data = { isAchievement: 0 }
 
     setTimeout(() => {
         state.list = [...state.list, ...[{ name: '携程' }, { name: '携程' }, { name: '携程' }, { name: '携程' }, { name: '携程' }, { name: '携程' }]]
@@ -86,18 +86,6 @@ const query = () => {
         state.pullLoading = false
         state.listLoading = false
     }, 1000)
-
-    // projectList(data, state.pageParams).then(res => {
-    //     if (res.code == '200') {
-    //         state.pageParams.pageNum += 1
-    //         state.list = [...state.list, ...res.data.rows]
-    //         if (state.list.length >= res.data.total) {
-    //             state.listFinished = true
-    //         }
-    //     }
-    //     state.pullLoading = false
-    //     state.listLoading = false
-    // })
 }
 
 </script>

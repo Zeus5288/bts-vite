@@ -5,6 +5,7 @@ import {
     NavBar, 
     Tabbar, 
     TabbarItem, 
+    CellGroup,
     Cell,
     Row, 
     Col, 
@@ -36,6 +37,7 @@ const app = createApp(App);
 app.use(NavBar)
 .use(Tabbar)
 .use(TabbarItem)
+.use(CellGroup)
 .use(Cell)
 .use(Row)
 .use(Col)

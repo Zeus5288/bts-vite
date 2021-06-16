@@ -57,16 +57,29 @@ import { defineProps, reactive, onMounted } from "vue";
 import { useRouter } from "vue-router";
 const router = useRouter()
 
-let state = reactive({
+type DState = {
+  pullLoading: boolean,
+  listLoading: boolean,
+  listFinished: boolean,
+  list: any[]
+}
+
+let state: DState = reactive({
   pullLoading: false,
   listLoading: false,
   listFinished: false,
-  list: [],
-  pageParams: {
-    pageNum: 1,
-    pageSize: 10
-  }
+  list: []
 });
+
+type DPage = {
+  pageNum: number,
+  pageSize: number
+}
+
+const pageParams: DPage = {
+  pageNum: 1,
+  pageSize: 10
+}
 
 onMounted(() => {
   query();
@@ -75,7 +88,7 @@ onMounted(() => {
 const onRefresh = () => {
   state.list = [];
   state.listFinished = false;
-  state.pageParams.pageNum = 1;
+  pageParams.pageNum = 1;
   state.listLoading = true;
 
   setTimeout(() => {

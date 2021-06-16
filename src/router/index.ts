@@ -84,6 +84,15 @@ const routes = [
         },
         component: () => import('@/views/TripDetail/index.vue')
     },
+    {
+        path: '/place-order',
+        name: 'PlaceOrder',
+        meta: {
+            title: '下单',
+            isOpen: true
+        },
+        component: () => import('@/views/PlaceOrder/index.vue')
+    },
 ]
 
 export default createRouter({
